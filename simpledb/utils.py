@@ -4,6 +4,8 @@ Created on Thu Oct  8 21:25:08 2020
 
 @author: HP
 """
+import json
+
 class Utils:
 
     @staticmethod
@@ -31,7 +33,7 @@ class Utils:
             
 
     @staticmethod
-    def convert_to_dict(obj):
+    def obj_to_dict(obj):
 
         obj_dict = {
             "__class__": obj.__class__.__name__,
@@ -41,6 +43,7 @@ class Utils:
         obj_dict.update(obj.__dict__)
 
         return obj_dict
+    
 
     @staticmethod
     def dict_to_obj(our_dict):
@@ -60,7 +63,29 @@ class Utils:
 
             # Use dictionary unpacking to initialize the object
             obj = class_(**our_dict)
+            
         else:
             obj = our_dict
 
         return obj
+    
+    
+    @staticmethod
+    def encoder(database):
+        json_dict = {}
+
+        for key in database:
+            json_dict[key] = json.dumps(database[key], default=Utils.obj_to_dict, indent=4, sort_keys=True)
+
+        return json.dumps(json_dict)
+    
+
+    @staticmethod
+    def decoder(json_file):
+        database = {}
+        json_dict = json.loads(json_file)
+
+        for key in json_dict:
+            database[key] = json.loads(json_dict[key], object_hook=Utils.dict_to_obj)
+            
+        return database
