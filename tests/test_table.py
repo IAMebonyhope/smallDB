@@ -29,8 +29,8 @@ class TestSum(unittest.TestCase):
         for record in records:
             self.table.create(record)
         
-        actual = records
-        expected = self.table.read_all()
+        expected = records
+        actual = self.table.read_all()
         self.assertEqual(actual, expected)
     
     
@@ -43,10 +43,11 @@ class TestSum(unittest.TestCase):
                 {'faculty':'sciences', 'level':'100'},
                 {'level':'100'},
                 {'faculty':'arts', 'name':'Josh'},
-                {'name':'Tola', 'age':'19'}
+                {'name':'Tola', 'age':'19'},
+                {'name':'Sharon', 'age':25}
                 ]
         
-        actuals = [
+        expecteds = [
                 [
                 {'age':27, 'name':'Josh', 'faculty':'sciences', 'level':'100'},
                 {'age':21, 'name':'John', 'faculty':'sciences', 'level':'100'},
@@ -63,14 +64,15 @@ class TestSum(unittest.TestCase):
                 {'age':20, 'name':'Kate', 'faculty':'arts', 'level':'100'},
                 ],
                 [],
+                [],
                 [
-                {'age':19, 'name':'Tola', 'faculty':'sciences', 'level':'400'}
+                {'age':25, 'name':'Sharon', 'faculty':'arts', 'level':'300'}
                 ]
                    ]
                 
         for i in range(len(query_dicts)):
-            expected = self.table.read_where(query_dicts[i])
-            self.assertEqual(actuals[i], expected)
+            actual = self.table.read_where(query_dicts[i])
+            self.assertEqual(actual, expecteds[i])
 
 
 
