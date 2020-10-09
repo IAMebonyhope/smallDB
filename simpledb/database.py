@@ -4,8 +4,8 @@ Created on Thu Oct  8 21:24:34 2020
 
 @author: HP
 """
-from utils import Utils
-from table import Table
+from .utils import Utils
+from .table import Table
 import os.path
 
 class Database:
