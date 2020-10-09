@@ -49,10 +49,10 @@ class Table(object):
         """
         Update matching records with the values provided.
         """
-        matches = self.get_where(query_dict)
+        matches = self.read_where(query_dict)
         
         if (len(matches) == 0):
-            self.insert(changes_dict)
+            self.create(changes_dict)
             
         else:
             for match in matches:
@@ -70,7 +70,7 @@ class Table(object):
         """
         Delete matching records from the table.
         """
-        matches = self.get(query_dict)
+        matches = self.read_where(query_dict)
         
         if (len(matches) == len(self.__records)):
             self.delete_all()
@@ -87,6 +87,6 @@ class Table(object):
         if (len(query_dict) == 0):
             return len(self.__records)
 
-        return len(self.get(query_dict))
+        return len(self.read_where(query_dict))
     
     

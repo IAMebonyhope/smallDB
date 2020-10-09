@@ -36,7 +36,7 @@ class TestSum(unittest.TestCase):
     
     def test_read(self):
         """
-        Test that a record is inserted into the table
+        Test that a records can be gotten from the table, if the where condition is met
         """
         query_dicts =  [
                 {'faculty':'sciences'},
@@ -73,6 +73,38 @@ class TestSum(unittest.TestCase):
         for i in range(len(query_dicts)):
             actual = self.table.read_where(query_dicts[i])
             self.assertEqual(actual, expecteds[i])
+
+
+    def test_update(self):
+        """
+        Test that records can be updated in the table
+        """
+        query_dicts =  [
+                {'name':'Josh'},
+                {'faculty':'sciences'},
+                {'faculty':'arts', 'level':'300'},
+                ]
+        
+        changed_dicts = [
+                {'name':'Joshua', 'faculty':'arts', 'level':'200'},
+                {'faculty':'science', 'department':'chemistry'},
+                {'department':'music', 'courses':['MUS101', 'DAN309', 'CIV378']},
+                ]
+        
+        expected = [
+                {'age':27, 'name':'Joshua', 'faculty':'arts', 'level':'200'},
+                {'age':21, 'name':'John', 'faculty':'science', 'department':'chemistry', 'level':'100'},
+                {'age':24, 'name':'Jane', 'faculty':'science', 'department':'chemistry', 'level':'200'},
+                {'age':19, 'name':'Tola', 'faculty':'science', 'department':'chemistry', 'level':'400'},
+                {'age':20, 'name':'Kate', 'faculty':'arts', 'level':'100'},
+                {'age':25, 'name':'Sharon', 'faculty':'arts', 'level':'300', 'department':'music', 'courses':['MUS101', 'DAN309', 'CIV378']},
+                   ]
+        
+        for i in range(len(query_dicts)):
+            self.table.update_where(query_dicts[i], changed_dicts[i])
+        
+        actual = self.table.read_all()
+        self.assertEqual(actual, expected)
 
 
 
