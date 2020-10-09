@@ -16,21 +16,21 @@ class Table(object):
         self.__records = []
         
 
-    def add(self, record):
+    def create(self, record):
         """
         Add a new record to the table.
         """
         self.__records.append(record)
         
 
-    def get_all(self):
+    def read_all(self):
         """
         Return list of all records in the table.
         """
         return self.__records
     
     
-    def get_where(self, query_dict):
+    def read_where(self, query_dict):
         """
         Return list of matching records.
         """
