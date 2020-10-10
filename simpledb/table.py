@@ -57,7 +57,7 @@ class Table(object):
         else:
             for match in matches:
                 Utils.add_or_update(changes_dict, match)
-    
+                
 
     def delete_all(self):
         """
@@ -70,6 +70,7 @@ class Table(object):
         """
         Delete matching records from the table.
         """
+        print(self.__records)
         matches = self.read_where(query_dict)
         
         if (len(matches) == len(self.__records)):
@@ -80,12 +81,14 @@ class Table(object):
                 self.__records.remove(match)
 
     
-    def count(self, query_dict):
+    def count(self, query_dict={}):
         """
         Return the number of matching docs.
         """
         if (len(query_dict) == 0):
+            print(self.__records)
             return len(self.__records)
+        
 
         return len(self.read_where(query_dict))
     

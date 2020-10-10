@@ -106,6 +106,55 @@ class TestSum(unittest.TestCase):
         actual = self.table.read_all()
         self.assertEqual(actual, expected)
 
+    
+    def test_delete_where(self):      
+        """
+        Test that records can be deleted in the table
+        """
+        query_dict = {'name':'Joshua', 'age':'27'}
+        
+        
+        expected = [
+                {'age':21, 'name':'John', 'faculty':'science', 'department':'chemistry', 'level':'100'},
+                {'age':24, 'name':'Jane', 'faculty':'science', 'department':'chemistry', 'level':'200'},
+                {'age':19, 'name':'Tola', 'faculty':'science', 'department':'chemistry', 'level':'400'},
+                {'age':20, 'name':'Kate', 'faculty':'arts', 'level':'100'},
+                {'age':25, 'name':'Sharon', 'faculty':'arts', 'level':'300', 'department':'music', 'courses':['MUS101', 'DAN309', 'CIV378']},
+                   ]
+        
+        self.table.delete_where(query_dict)
+        actual = self.table.read_all()
+        self.assertEqual(actual, expected)
+    
+    '''
+    def test_count(self):
+        """
+        Test that it returns number of records in the table
+        """
+        expected = 5
+        actual = self.table.count()
+        self.assertEqual(actual, expected)
+    
+    
+    def test_count_where(self):
+        """
+        Test that it returns number of records in the table where the query is the query is met
+        """
+        expected = 3
+        actual = self.table.count({'department':'chemistry'})
+        self.assertEqual(actual, expected)
+        
+        
+    def test_delete_all(self):      
+        """
+        Test that all records can be deleted in the table
+        """
+        
+        self.table.delete_all()
+        
+        actual = self.table.read_all()
+        self.assertEqual(actual, [])
+'''
 
 
 
