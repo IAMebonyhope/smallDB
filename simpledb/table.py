@@ -70,7 +70,6 @@ class Table(object):
         """
         Delete matching records from the table.
         """
-        print(self.__records)
         matches = self.read_where(query_dict)
         
         if (len(matches) == len(self.__records)):
@@ -85,10 +84,8 @@ class Table(object):
         """
         Return the number of matching docs.
         """
-        if (len(query_dict) == 0):
-            print(self.__records)
-            return len(self.__records)
-        
+        if (len(query_dict) == 0):        
+            return len(self.__records)        
 
         return len(self.read_where(query_dict))
     

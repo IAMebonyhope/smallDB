@@ -11,7 +11,23 @@ import simpledb
 
 class TestSum(unittest.TestCase):
     
-    table = simpledb.Table("students")
+    def insert_into_table(self):
+        
+        table = simpledb.Table("students")
+        records = [
+                {'age':27, 'name':'Josh', 'faculty':'sciences', 'level':'100'},
+                {'age':21, 'name':'John', 'faculty':'sciences', 'level':'100'},
+                {'age':24, 'name':'Jane', 'faculty':'sciences', 'level':'200'},
+                {'age':19, 'name':'Tola', 'faculty':'sciences', 'level':'400'},
+                {'age':20, 'name':'Kate', 'faculty':'arts', 'level':'100'},
+                {'age':25, 'name':'Sharon', 'faculty':'arts', 'level':'300'},
+                   ]
+        
+        for record in records:
+            table.create(record)
+        
+        return table
+        
     
     def test_create(self):
         """
@@ -25,12 +41,10 @@ class TestSum(unittest.TestCase):
                 {'age':20, 'name':'Kate', 'faculty':'arts', 'level':'100'},
                 {'age':25, 'name':'Sharon', 'faculty':'arts', 'level':'300'},
                    ]
-        
-        for record in records:
-            self.table.create(record)
+        table = self.insert_into_table()
         
         expected = records
-        actual = self.table.read_all()
+        actual = table.read_all()
         self.assertEqual(actual, expected)
     
     
@@ -38,6 +52,8 @@ class TestSum(unittest.TestCase):
         """
         Test that a records can be gotten from the table, if the where condition is met
         """
+        table = self.insert_into_table()
+            
         query_dicts =  [
                 {'faculty':'sciences'},
                 {'faculty':'sciences', 'level':'100'},
@@ -71,7 +87,7 @@ class TestSum(unittest.TestCase):
                    ]
                 
         for i in range(len(query_dicts)):
-            actual = self.table.read_where(query_dicts[i])
+            actual = table.read_where(query_dicts[i])
             self.assertEqual(actual, expecteds[i])
 
 
@@ -79,6 +95,7 @@ class TestSum(unittest.TestCase):
         """
         Test that records can be updated in the table
         """
+        table = self.insert_into_table()
         query_dicts =  [
                 {'name':'Josh'},
                 {'faculty':'sciences'},
@@ -101,47 +118,49 @@ class TestSum(unittest.TestCase):
                    ]
         
         for i in range(len(query_dicts)):
-            self.table.update_where(query_dicts[i], changed_dicts[i])
+            table.update_where(query_dicts[i], changed_dicts[i])
         
-        actual = self.table.read_all()
+        actual = table.read_all()
         self.assertEqual(actual, expected)
-
+        
     
-    def test_delete_where(self):      
-        """
-        Test that records can be deleted in the table
-        """
-        query_dict = {'name':'Joshua', 'age':'27'}
-        
-        
-        expected = [
-                {'age':21, 'name':'John', 'faculty':'science', 'department':'chemistry', 'level':'100'},
-                {'age':24, 'name':'Jane', 'faculty':'science', 'department':'chemistry', 'level':'200'},
-                {'age':19, 'name':'Tola', 'faculty':'science', 'department':'chemistry', 'level':'400'},
-                {'age':20, 'name':'Kate', 'faculty':'arts', 'level':'100'},
-                {'age':25, 'name':'Sharon', 'faculty':'arts', 'level':'300', 'department':'music', 'courses':['MUS101', 'DAN309', 'CIV378']},
-                   ]
-        
-        self.table.delete_where(query_dict)
-        actual = self.table.read_all()
-        self.assertEqual(actual, expected)
-    
-    '''
     def test_count(self):
         """
         Test that it returns number of records in the table
         """
-        expected = 5
-        actual = self.table.count()
+        table = self.insert_into_table()
+        expected = 6
+        actual = table.count()
+        self.assertEqual(actual, expected)
+
+
+    def test_delete_where(self):      
+        """
+        Test that records can be deleted in the table
+        """
+        table = self.insert_into_table()
+        query_dict = {'name':'Josh', 'age':27}
+        
+        expected = [
+                {'age':21, 'name':'John', 'faculty':'sciences', 'level':'100'},
+                {'age':24, 'name':'Jane', 'faculty':'sciences', 'level':'200'},
+                {'age':19, 'name':'Tola', 'faculty':'sciences', 'level':'400'},
+                {'age':20, 'name':'Kate', 'faculty':'arts', 'level':'100'},
+                {'age':25, 'name':'Sharon', 'faculty':'arts', 'level':'300'},
+                   ]
+        
+        table.delete_where(query_dict)
+        actual = table.read_all()
         self.assertEqual(actual, expected)
     
-    
+
     def test_count_where(self):
         """
         Test that it returns number of records in the table where the query is the query is met
         """
-        expected = 3
-        actual = self.table.count({'department':'chemistry'})
+        table = self.insert_into_table()
+        expected = 4
+        actual = table.count({'faculty':'sciences'})
         self.assertEqual(actual, expected)
         
         
@@ -149,12 +168,11 @@ class TestSum(unittest.TestCase):
         """
         Test that all records can be deleted in the table
         """
+        table = self.insert_into_table()
+        table.delete_all()
         
-        self.table.delete_all()
-        
-        actual = self.table.read_all()
+        actual = table.read_all()
         self.assertEqual(actual, [])
-'''
 
 
 
