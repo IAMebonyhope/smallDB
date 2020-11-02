@@ -7,7 +7,7 @@ Created on Fri Oct 16 00:54:30 2020
 
 import unittest
 
-import simpledb
+import smalldb
 
 class TestSum(unittest.TestCase):  
     
@@ -15,7 +15,7 @@ class TestSum(unittest.TestCase):
         """
         Test that a table can be created and added to the database
         """
-        db = simpledb.Database("school")
+        db = smalldb.Database("school")
         student_table = db.create_table("students")      
         self.assertEqual(student_table.get_name(), "students")
         
@@ -28,7 +28,7 @@ class TestSum(unittest.TestCase):
             """
             Test that an exception is thrown when table exists
             """
-            db = simpledb.Database("bank") 
+            db = smalldb.Database("bank") 
             customers_table = db.create_table("customers")      
             table = db.create_table("customers")      
             
@@ -37,7 +37,7 @@ class TestSum(unittest.TestCase):
         """
         Test that a table can be retrieved from the database
         """
-        db = simpledb.Database("school")
+        db = smalldb.Database("school")
         db.create_table("students")
         db.create_table("staffs")
         student_table = db.get_table("students")      
@@ -49,7 +49,7 @@ class TestSum(unittest.TestCase):
     
     def test_get_table_exception(self):
         with self.assertRaises(Exception):
-            db = simpledb.Database("apps")
+            db = smalldb.Database("apps")
             table = db.get_table("stores")  
     
     
@@ -57,7 +57,7 @@ class TestSum(unittest.TestCase):
         """
         Test that a table can be retrieved from the database
         """
-        db = simpledb.Database("school")
+        db = smalldb.Database("school")
         db.create_table("students")
         db.create_table("staffs")
         
@@ -68,7 +68,7 @@ class TestSum(unittest.TestCase):
         """
         Test that a table can be retrieved from the database
         """
-        db = simpledb.Database("school")
+        db = smalldb.Database("school")
         db.create_table("students")
         db.create_table("staffs")
         
@@ -79,7 +79,7 @@ class TestSum(unittest.TestCase):
     
     def test_drop_table_exception(self):
         with self.assertRaises(Exception):
-            db = simpledb.Database("apps")
+            db = smalldb.Database("apps")
             db.drop_table("stores") 
             
             

@@ -7,13 +7,13 @@ Created on Thu Oct  8 23:23:01 2020
 
 import unittest
 
-import simpledb
+import smalldb
 
 class TestSum(unittest.TestCase):
     
     def insert_into_table(self):
         
-        table = simpledb.Table("students")
+        table = smalldb.Table("students")
         records = [
                 {'age':27, 'name':'Josh', 'faculty':'sciences', 'level':'100'},
                 {'age':21, 'name':'John', 'faculty':'sciences', 'level':'100'},
