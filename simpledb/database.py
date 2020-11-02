@@ -57,6 +57,9 @@ class Database:
         """
         if name in self.database:
             del self.database[name]
+        
+        else:
+            raise Exception("table does not exist")
 
     
     def close(self):
