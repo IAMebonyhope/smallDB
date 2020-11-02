@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: SmallDB
+Version: 1.0
+Summary: A lightweight (NoSQL) document oriented database, simple and easy to integrate into small apps
+Home-page: https://github.com/ebonyhope/smallDB/
+Author: OLUWALOLOPE HOPE
+Author-email: blessyn2hope@gmail.com
+License: MIT
+Download-URL: https://github.com/ebonyhope/smallDB/archive/v1.0.tar.gz
+Description: # SimpleDB Package
+        
+        This is a simple database package. You can use
+        [Github-flavored Markdown](https://guides.github.com/features/mastering-markdown/)
+        to write your content.
+Keywords: NOSQL,Database,document,simple,easy
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown

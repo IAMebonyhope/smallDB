@@ -1,0 +1,10 @@
+README.md
+setup.py
+SmallDB.egg-info/PKG-INFO
+SmallDB.egg-info/SOURCES.txt
+SmallDB.egg-info/dependency_links.txt
+SmallDB.egg-info/top_level.txt
+smalldb/__init__.py
+smalldb/database.py
+smalldb/table.py
+smalldb/utils.py

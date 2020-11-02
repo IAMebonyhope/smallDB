@@ -11,8 +11,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-  name = 'PythonSimpleDB',         
-  packages = ['simpledb'],
+  name = 'SmallDB',         
+  packages = ['smalldb'],
   version = '1.0',      
   license='MIT',        
   description = 'A lightweight (NoSQL) document oriented database, simple and easy to integrate into small apps',   
@@ -20,8 +20,8 @@ setuptools.setup(
   long_description_content_type="text/markdown",
   author = 'OLUWALOLOPE HOPE',                   
   author_email = 'blessyn2hope@gmail.com',      
-  url = 'https://github.com/ebonyhope/simpleDB/',   
-  download_url = 'https://github.com/ebonyhope/simpleDB/archive/v1.0.tar.gz',    
+  url = 'https://github.com/ebonyhope/smallDB/',   
+  download_url = 'https://github.com/ebonyhope/smallDB/archive/v1.0.tar.gz',    
   keywords = ['NOSQL', 'Database', 'document', 'simple', 'easy'],   
   install_requires=[            
       ],
