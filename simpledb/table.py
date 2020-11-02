@@ -15,6 +15,10 @@ class Table(object):
         self.__name = name
         self.__records = []
         
+        
+    def get_name(self):
+        return self.__name
+        
 
     def create(self, record):
         """

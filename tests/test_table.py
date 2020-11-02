@@ -27,8 +27,18 @@ class TestSum(unittest.TestCase):
             table.create(record)
         
         return table
-        
     
+    
+    def test_get_name(self):
+       """
+       Test that a table can return its name
+       """
+       table = self.insert_into_table()
+       actual = table.get_name()
+        
+       self.assertEqual(actual, "students")
+        
+        
     def test_create(self):
         """
         Test that a record is inserted into the table
