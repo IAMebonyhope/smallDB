@@ -78,6 +78,19 @@ class TestSum(unittest.TestCase):
         with self.assertRaises(Exception):
             db = simpledb.Database("apps")
             table = db.get_table("stores")  
+    
+    
+    def test_get_table_names(self):
+        """
+        Test that a table can be retrieved from the database
+        """
+        db = simpledb.Database("school")
+        db.create_table("students")
+        db.create_table("staffs")
+        
+        self.assertEqual(db.get_table_names, ["staffs", "students"])
+            
+            
             
     
 
